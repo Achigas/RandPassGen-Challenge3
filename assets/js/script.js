@@ -1,26 +1,24 @@
-// Assignment code here
-
-// How many characters 8-128
-
+//Assignment Code 
 //# of Characters
 function NumofCharacters () {
   var length = window.prompt("How many characters would you like in the password? Please select a number between 8-128.")
 //Change string to integer 
 length = parseInt(length);
     //validate response
-    if (length >= 8 && length <= 128) {
+     if (length >= 8 && length <= 128) {
        return length }
-    else {
+    else  { 
       window.alert("Please enter a number between 8 and 128");
       NumofCharacters();
     }
 }
 
+//LowerCase Characters?
 function hasLower () {
   var confirmLower = window.prompt("Would you like to include lowercase characters (Yes/No)?")
-  if (confirmLower==="YES" || confirmLower==="Yes" || confirmLower==="yes") {
+  if (confirmLower.toLowerCase() === "yes") {
     return true }
-  else if (confirmLower==="NO" || confirmLower==="No" || confirmLower==="no") {
+  else if (confirmLower.toLowerCase()=== "no") {
     return false }
   else {
     window.alert("Please enter Yes or No.")
@@ -30,9 +28,9 @@ function hasLower () {
 //Uppercase characters?
  function hasUpper () {
   var confirmUpper= window.prompt("Would you like to include uppercase characters (Yes/No)?")
-    if (confirmUpper==="YES" || confirmUpper==="Yes" || confirmUpper==="yes") {
+    if (confirmUpper.toLowerCase() === "yes") {
       return true }
-    else if (confirmUpper==="NO" || confirmUpper==="No" || confirmUpper==="no") {
+    else if (confirmUpper.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
@@ -42,9 +40,9 @@ function hasLower () {
 //Numeric Characters?
 function hasNumeric () {
   var confirmNumeric = window.prompt("Would you like to include numeric characters (Yes/No)?")
-    if (confirmNumeric==="YES" || confirmNumeric==="Yes" || confirmNumeric==="yes") {
+    if (confirmNumeric.toLowerCase() === "yes") {
       return true }
-    else if (confirmNumeric==="NO" || confirmNumeric==="No" || confirmNumeric==="no") {
+    else if (confirmNumeric.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
@@ -54,36 +52,38 @@ function hasNumeric () {
 //Special characters?
 function hasSpecial () {
   var confirmSpecial = window.prompt("Would you like to include special characters (Yes/No)?")
-    if (confirmSpecial==="YES" || confirmSpecial==="Yes" || confirmSpecial==="yes") {
+    if (confirmSpecial.toLowerCase() === "yes") {
       return true }
-    else if (confirmSpecial==="NO" || confirmSpecial==="No" || confirmSpecial=="no") {
+    else if (confirmSpecial.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
       hasSpecial(); }
     }
 
-  //obtain potential values through character codes and place them in array
+  //obtain potential values through ascii character codes and place them in array
   var LowerCharCodes = arrayLowtoHigh(97,122)
   var UpperCharCodes = arrayLowtoHigh(65,90)
   var NumericCharCodes = arrayLowtoHigh(48,57)
   var SpecialCharCodes = arrayLowtoHigh(33,47).concat(arrayLowtoHigh(58,64)).concat(arrayLowtoHigh(91,96)).concat(arrayLowtoHigh(123,126))
 
-  function arrayLowtoHigh(low,high) {
-    var arrayChar = []
-     for (let i=low; i<=high; i++) {
-     arrayChar.push(i)
+  //Set up loop for arrray to write out all values 
+  function arrayLowtoHigh(asciiLow,asciiHigh) {
+    var arrayCharacters = []
+     for (let i=asciiLow; i<=asciiHigh; i++) {
+     arrayCharacters.push(i)
     }
-    return arrayChar
+    return arrayCharacters
     }
- 
+  
+ //Generate password code 
  function generatePassword(lower, upper, numeric, special, length) {
-        //check that there is at least one "yes" 
-         let countChar = lower + upper + numeric + special;
-            if (countChar === 0) {
-            window.alert("Please choose at least one character type for a valid password.");
-            return '';
-            }
+      //check that there is at least one "yes" 
+      let countChar = lower + upper + numeric + special;
+        if (countChar === 0) {
+        window.alert("Please choose at least one character type for a valid password.");
+        return '';
+        }
 
       //set up array of character codes
       let charcodes = []
@@ -95,8 +95,6 @@ function hasSpecial () {
         charcodes = charcodes.concat(NumericCharCodes)
       if (special)
         charcodes = charcodes.concat(SpecialCharCodes)
-
-      console.log(charcodes)
         
       //loop over array randomly to get numbers associaated with eligible characters
 
@@ -108,11 +106,6 @@ function hasSpecial () {
       return finalpassword;
         }
 
-    //If lower is true
-
-// For loop with i=length of password
-//loop through only characters that were answered yes.
-//random functions to assign which to use
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -127,9 +120,8 @@ function writePassword() {
   var password = generatePassword(lower, upper, numeric, special, length);
   var passwordText = document.querySelector("#password")
 
-  passwordText.value = password;
-
+ passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
+generateBtn.addEventListener("click", writePassword);
