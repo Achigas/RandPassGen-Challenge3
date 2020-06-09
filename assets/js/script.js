@@ -3,7 +3,7 @@
 // How many characters 8-128
 
 //# of Characters
-var NumofCharacters = function() {
+function NumofCharacters () {
   var length = window.prompt("How many characters would you like in the password? Please select a number between 8-128.")
 //Change string to integer 
 length = parseInt(length);
@@ -16,7 +16,7 @@ length = parseInt(length);
     }
 }
 
-var hasLower = function() {
+function hasLower () {
   var confirmLower = window.prompt("Would you like to include lowercase characters (Yes/No)?")
   if (confirmLower==="YES" || confirmLower==="Yes" || confirmLower==="yes") {
     return true }
@@ -28,7 +28,7 @@ var hasLower = function() {
   }
 
 //Uppercase characters?
-var hasUpper = function () {
+ function hasUpper () {
   var confirmUpper= window.prompt("Would you like to include uppercase characters (Yes/No)?")
     if (confirmUpper==="YES" || confirmUpper==="Yes" || confirmUpper==="yes") {
       return true }
@@ -40,7 +40,7 @@ var hasUpper = function () {
     }
 
 //Numeric Characters?
-var hasNumeric = function () {
+function hasNumeric () {
   var confirmNumeric = window.prompt("Would you like to include numeric characters (Yes/No)?")
     if (confirmNumeric==="YES" || confirmNumeric==="Yes" || confirmNumeric==="yes") {
       return true }
@@ -52,7 +52,7 @@ var hasNumeric = function () {
     }
 
 //Special characters?
-var hasSpecial = function () {
+function hasSpecial () {
   var confirmSpecial = window.prompt("Would you like to include special characters (Yes/No)?")
     if (confirmSpecial==="YES" || confirmSpecial==="Yes" || confirmSpecial==="yes") {
       return true }
@@ -61,25 +61,21 @@ var hasSpecial = function () {
     else {
       window.alert("Please enter Yes or No.")
       hasSpecial(); }
-  }
-  //call functions
-  var length = NumofCharacters()
-  var lower = hasLower()
-  var upper = hasUpper()
-  var numeric = hasNumeric()
-  var special = hasSpecial()
-  
+    }
+
   //obtain potential values through character codes and place them in array
-  var LowerCharCodes = arrayLowtoHigh(65,90)
-  var UpperCharCodes = arrayLowtoHigh(97,122)
+  var LowerCharCodes = arrayLowtoHigh(97,122)
+  var UpperCharCodes = arrayLowtoHigh(65,90)
   var NumericCharCodes = arrayLowtoHigh(48,57)
   var SpecialCharCodes = arrayLowtoHigh(33,47).concat(arrayLowtoHigh(58,64)).concat(arrayLowtoHigh(91,96)).concat(arrayLowtoHigh(123,126))
 
-  console.log(lower)
-  console.log(upper)
-  console.log(numeric)
-  console.log(special)
-  console.log(length)
+  function arrayLowtoHigh(low,high) {
+    var arrayChar = []
+     for (let i=low; i<=high; i++) {
+     arrayChar.push(i)
+    }
+    return arrayChar
+    }
  
  function generatePassword(lower, upper, numeric, special, length) {
         //check that there is at least one "yes" 
@@ -100,23 +96,17 @@ var hasSpecial = function () {
       if (special)
         charcodes = charcodes.concat(SpecialCharCodes)
 
-        console.log(charcodes)
-
+      console.log(charcodes)
+        
       //loop over array randomly to get numbers associaated with eligible characters
 
-      //let finalpassword = "";
-      //for (let i=0, i < length; i++)
-       // var codeChar = charcodes[Math.floor(Math.random() * charcodes.length)]
-      
-
- }    
-function arrayLowtoHigh(low,high) {
-  var arrayChar = []
-  for (let i=low; i<=high; i++) {
-    arrayChar.push(i)
-  }
-  return arrayChar
-}
+      let finalpassword = "";
+      for (let i=0; i < length; i++) {
+        var codeChar = charcodes[Math.floor(Math.random() * charcodes.length)]
+        finalpassword = finalpassword + String.fromCharCode(codeChar);
+        }
+      return finalpassword;
+        }
 
     //If lower is true
 
@@ -129,12 +119,17 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  var length = NumofCharacters();
+  var lower = hasLower();
+  var upper = hasUpper();
+  var numeric = hasNumeric();
+  var special = hasSpecial();
   var password = generatePassword(lower, upper, numeric, special, length);
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector("#password")
 
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword());
