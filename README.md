@@ -3,6 +3,7 @@
 
 ## Table of contents
 * [General info](#general-info)
+* [Website URL](#website)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Status](#status)
@@ -11,6 +12,9 @@
 
 ## General info
 This is a random password generator. It allows for user input for length and character types. 
+
+## Website
+[Password Generator](https://achigas.github.io/RandPassGen-Challenge3/)
 
 ## Screenshots
 ![Password Generator Screenshot](./assets/images/PasswordGen.png)
