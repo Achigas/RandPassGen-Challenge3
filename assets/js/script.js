@@ -1,7 +1,6 @@
 //Assignment Code 
 //# of Characters
 function NumofCharacters () {
-  console.log(length)
   var length = window.prompt("How many characters would you like in the password? Please select a number between 8-128.")
   if (length == null) {
     return;
@@ -13,7 +12,6 @@ length = parseInt(length);
        return length }
     else  { 
       window.alert("Please enter a number between 8 and 128");
-      console.log(length)
       return NumofCharacters();
     }
 }
@@ -134,7 +132,6 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input, quit if null value is returned for any variable (user cancelled)
 function writePassword() {
   var length = NumofCharacters();
-    console.log(length)
     if (length == null) {
       return;
     }
