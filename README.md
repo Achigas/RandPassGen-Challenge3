@@ -1,4 +1,4 @@
-# Password Generator Starter Code
+# Password Generator 
 > Random Passwordd Generator for Challenge 3 at UCLAx Bootcamp!
 
 ## Table of contents
