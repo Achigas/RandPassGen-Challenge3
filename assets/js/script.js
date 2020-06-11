@@ -1,7 +1,11 @@
 //Assignment Code 
 //# of Characters
 function NumofCharacters () {
+  console.log(length)
   var length = window.prompt("How many characters would you like in the password? Please select a number between 8-128.")
+  if (length == null) {
+    return;
+  }
 //Change string to integer 
 length = parseInt(length);
     //validate response
@@ -9,56 +13,73 @@ length = parseInt(length);
        return length }
     else  { 
       window.alert("Please enter a number between 8 and 128");
-      NumofCharacters();
+      console.log(length)
+      return NumofCharacters();
     }
 }
 
 //LowerCase Characters?
 function hasLower () {
   var confirmLower = window.prompt("Would you like to include lowercase characters (Yes/No)?")
-  if (confirmLower.toLowerCase() === "yes") {
+  //if user cancels
+  if (confirmLower == null){
+    return;}
+  //if user enters a response
+  else if (confirmLower.toLowerCase() === "yes") {
     return true }
   else if (confirmLower.toLowerCase()=== "no") {
     return false }
   else {
     window.alert("Please enter Yes or No.")
-    hasLower(); }
+    return hasLower(); }
   }
 
 //Uppercase characters?
  function hasUpper () {
   var confirmUpper= window.prompt("Would you like to include uppercase characters (Yes/No)?")
-    if (confirmUpper.toLowerCase() === "yes") {
+  //if user cancels
+    if (confirmUpper == null) {
+      return;}
+  //if user enters a response
+    else if (confirmUpper.toLowerCase() === "yes") {
       return true }
     else if (confirmUpper.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
-      hasUpper(); }
+      return hasUpper(); }
     }
 
 //Numeric Characters?
 function hasNumeric () {
   var confirmNumeric = window.prompt("Would you like to include numeric characters (Yes/No)?")
-    if (confirmNumeric.toLowerCase() === "yes") {
+  //if user cancels
+    if (confirmNumeric == null) {
+      return;}
+    //if user enters a response
+    else if (confirmNumeric.toLowerCase() === "yes") {
       return true }
     else if (confirmNumeric.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
-      hasNumeric(); }
+      return hasNumeric(); }
     }
 
 //Special characters?
 function hasSpecial () {
   var confirmSpecial = window.prompt("Would you like to include special characters (Yes/No)?")
-    if (confirmSpecial.toLowerCase() === "yes") {
+    //if user cancels
+    if (confirmSpecial == null) {
+      return;}
+    //if user enters a response
+    else if (confirmSpecial.toLowerCase() === "yes") {
       return true }
     else if (confirmSpecial.toLowerCase() === "no") {
       return false }
     else {
       window.alert("Please enter Yes or No.")
-      hasSpecial(); }
+      return hasSpecial(); }
     }
 
   //obtain potential values through ascii character codes and place them in array
@@ -110,13 +131,30 @@ function hasSpecial () {
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// Write password to the #password input, quit if null value is returned for any variable (user cancelled)
 function writePassword() {
   var length = NumofCharacters();
+    console.log(length)
+    if (length == null) {
+      return;
+    }
+
   var lower = hasLower();
+    if (lower == null) {
+      return;
+    }
   var upper = hasUpper();
+    if (upper == null) {
+      return;
+    }
   var numeric = hasNumeric();
+    if (numeric == null) {
+      return;
+    }
   var special = hasSpecial();
+    if (special == null) {
+      return;
+    }
   var password = generatePassword(lower, upper, numeric, special, length);
   var passwordText = document.querySelector("#password")
 
